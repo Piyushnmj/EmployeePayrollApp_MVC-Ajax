@@ -1,0 +1,105 @@
+﻿@model EmployeePayroll_MVC_Ajax.Models.EmployeeModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@*<p>
+    <a asp-action="Create">Add Employee Details</a>
+</p>*@
+
+<button class="btn btn-sm btn-primary m-2" id="btnAddEmployee">Add Employee</button>
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Profile-Image</th>
+            <th>Gender</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>StartDate</th>
+            <th>Notes</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="text-center" id="table_data"></tbody>
+</table>
+
+@*Add Employee*@
+<div class="model fade modal" id="EmployeeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="text-info modal-title" id="heading">Add Employee</h1>
+                <button class="close text-danger" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group" id="empId">
+                        <label>Id</label>
+                        <input type="text" class="form-control" id="employeeId" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" id="name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Profile-Image</label>
+                        <input type="radio" id="image" name="img" value="~/Assets/Ellipse -1.png"/>
+                        <img class="image" src="~/Assets/Ellipse -1.png" />
+                        <input type="radio" id="image" name="img" value="~/Assets/Ellipse -2.png" />
+                        <img class="image" src="~/Assets/Ellipse -2.png" />
+                        <input type="radio" id="image" name="img" value="~/Assets/Ellipse -3.png" />
+                        <img class="image" src="~/Assets/Ellipse -3.png" />
+                        <input type="radio" id="image" name="img" value="~/Assets/Ellipse -4.png" />
+                        <img class="image" src="~/Assets/Ellipse -4.png" />
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <input id="gender" name="gender" value="Male" type="radio">
+                        Male
+                        <input id="gender" name="gender" value="Female" type="radio">
+                        Female
+                    </div>
+                    <div class="form-group">
+                        <label>Department</label>
+                        @*<input type="text" class="form-control" id="department" />*@
+                        <select class="form-control" id="department">
+                            <option value="">-- Select Department --</option>
+                            <option value="HR">HR</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Engineer">Engineer</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <input type="text" class="form-control" id="salary" />
+                    </div>
+                    <div class="form-group">
+                        <label>StartDate</label>
+                        <input type="date" class="form-control" id="startdate" />
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <input type="text" class="form-control" id="notes" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="AddEmployee();" id="AddEmployeebtn">Save</button>
+                <button class="btn btn-warning" onclick="Update()" style="display: none" id="Updatebtn">Update</button>
+                <button class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/custom.js"></script>
